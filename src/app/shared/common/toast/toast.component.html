@@ -1,0 +1,32 @@
+<div id="toast-container" class="absolute z-9999 t-0 r-0">
+  <div
+    class="toast absolute px-2 bd-radius-1"
+    [ngClass]="{
+       't-2 r-2': position === 'Top-right',
+       'bg-normal': tone === 'Normal',
+       'bg-warning': tone === 'Warning',
+       'bg-info': tone === 'Info',
+       'bg-success': tone === 'Success',
+       'bg-error text-white': tone === 'Error',
+       'active-toast': active,
+       'inactive-toast': !active
+    }"
+  >
+
+    <div class="w-16 relative">
+      <!-- dismiss-->
+      <div class="absolute t-0 r-0 pointer" (click)="handleDismiss()">
+        <i class="fa-solid fa-x dismiss-button"></i>
+      </div>
+
+      <div>
+        <div style="font-size: 16px; font-weight: 500">{{title}}</div>
+        <br/>
+        <div >Chúc bạn có một năm mới an khan thịnh vượng, tràn đầy sức khỏe</div>
+        <br/>
+        <div>Hãy lướt xuống để có nhiều trải nghiệm thú vị hơn nữa nhé 😉</div>
+      </div>
+    </div>
+  </div>
+
+</div>

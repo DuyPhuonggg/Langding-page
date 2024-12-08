@@ -1,0 +1,9 @@
+
+
+ /*background*/
+.bg-1 {
+  --tw-bg-opacity: 1;
+  background-color: var(--ld-background-color-2)
+}
+
+

@@ -1,0 +1,76 @@
+.toast {
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.dismiss-button:hover {
+  color: var(--ld-background-color-2);
+  opacity: 0.5;
+}
+
+.bg-normal {
+    background-color: #333;
+    color: #fff;
+}
+
+.bg-error {
+   background-color: #f54f43;
+  color: #fff;
+}
+
+.bg-success {
+  background-color: #54ae58;
+  color: #fff;
+}
+
+.bg-info {
+   background-color: #2d94e8;
+  color: #fff;
+}
+
+.bg-warning {
+  background-color: #ffec47;
+  color: #fff;
+}
+
+.active-toast {
+  animation: slideIn 0.5s ease forwards;
+}
+
+.inactive-toast {
+  animation: slideOut 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
