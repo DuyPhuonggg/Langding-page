@@ -11,6 +11,16 @@
   opacity: 0.5;
 }
 
+.toast-title {
+  font-size: 16px;
+  font-weight: 500;
+  padding-bottom: 1rem;
+}
+
+.toast-group-btn {
+  padding-top: 1rem;
+}
+
 .bg-normal {
     background-color: #333;
     color: #fff;

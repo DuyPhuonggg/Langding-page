@@ -20,11 +20,10 @@
       </div>
 
       <div>
-        <div style="font-size: 16px; font-weight: 500">{{title}}</div>
-        <br/>
-        <div >Chúc bạn có một năm mới an khan thịnh vượng, tràn đầy sức khỏe</div>
-        <br/>
-        <div>Hãy lướt xuống để có nhiều trải nghiệm thú vị hơn nữa nhé 😉</div>
+        <div *ngIf="title.length" class="toast-title">{{title}}</div>
+        <div>
+          <ng-content></ng-content>
+        </div>
       </div>
     </div>
   </div>

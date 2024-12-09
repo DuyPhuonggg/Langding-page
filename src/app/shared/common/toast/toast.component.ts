@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PositionToast, ToneToast } from '../../../types/shared/common/toast/toast.type';
+import { PositionToast, ToneToast } from '@/app/types/shared/common/toast/toast.type';
 
 @Component({
   selector: 'app-toast',
@@ -10,8 +10,15 @@ export class ToastComponent {
   private _position: PositionToast = 'Bottom-center';
   private _tone: ToneToast = 'Normal';
   private _active: boolean = false;
+  private _title: string = '';
 
-  title = 'Happy new year 2025 ️️🎉️🎊️🎉️🎊️🎉️🎊';
+  @Input()
+  get title(): string {
+     return this._title;
+  }
+  set title(value: string) {
+      this._title = value;
+  }
 
   @Input()
   get position(): PositionToast {
@@ -31,11 +38,11 @@ export class ToastComponent {
 
   @Input()
   get active(): boolean {
-    return this._active;
+      return this._active;
   }
   set active(value: boolean) {
-    this._active = value;
-    this.activeChange.emit(value);
+      this._active = value;
+      this.activeChange.emit(value);
   }
 
   @Output() onDismiss: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -45,5 +52,4 @@ export class ToastComponent {
     this.onDismiss.emit(!this.active);
     this.activeChange.emit(!this.active);
   }
-
 }
