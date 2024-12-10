@@ -51,7 +51,7 @@
 }
 
 .inactive-toast {
-  animation: slideOut 0.5s ease forwards;
+  animation: fadeOut 0.5s ease forwards;
 }
 
 @keyframes slideIn {
@@ -73,6 +73,7 @@
   to {
     opacity: 0;
     transform: translateX(100%);
+
   }
 }
 
@@ -82,5 +83,6 @@
   }
   to {
     opacity: 0;
+    display: none;
   }
 }

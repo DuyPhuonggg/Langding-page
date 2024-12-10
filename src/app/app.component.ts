@@ -12,7 +12,6 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
   intervalId: any;
 
   timeDisplay = {
-    weeks: '00',
     days: '00',
     hours: '00',
     minutes: '00',
@@ -62,10 +61,9 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   updateCountdownDisplay() {
-    const { weeks, days, hours, minutes, seconds } = this.timeHelper.countDown(this.remainTime);
+    const { days, hours, minutes, seconds } = this.timeHelper.countDown(this.remainTime);
 
     this.timeDisplay = {
-      weeks: weeks.toString(),
       days: days.toString(),
       hours: hours.toString(),
       minutes: minutes.toString(),

@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastComponent } from './common/toast/toast.component';
+import { CalenderComponent } from '@/app/shared/component/calender/calender.component';
 
 
 @NgModule({
   declarations: [
-    ToastComponent
+    ToastComponent,
+    CalenderComponent
   ],
   exports: [
-    ToastComponent
+    ToastComponent,
+    CalenderComponent
   ],
   imports: [CommonModule],
 })

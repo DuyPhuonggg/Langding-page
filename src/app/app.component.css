@@ -10,16 +10,7 @@
    text-align: center;
    font-family: 'Arial', sans-serif;
    color: #333;
-   background: linear-gradient(to bottom, #eef3f7, #d9e4ea);
-   padding: 50px 20px;
- }
-
- h2 {
-   font-size: 24px;
-   margin-bottom: 20px;
-   color: #2b2b2b;
-   text-transform: uppercase;
-   letter-spacing: 2px;
+   padding: 50px 0;
  }
 
  .countdown-boxes {
@@ -29,8 +20,8 @@
  }
 
  .countdown-box {
-   background: #ffffff;
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   background: #851a20;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
    border-radius: 10px;
    padding: 20px 15px;
    text-align: center;
@@ -40,13 +31,20 @@
  .count-value {
    font-size: 36px;
    font-weight: bold;
-   color: #004e64;
+   color: rgba(255, 255, 255, 0.8);
  }
 
  .count-label {
    font-size: 14px;
-   color: #7a8a99;
+   color: rgba(255, 255, 255, 0.8);
    margin-top: 10px;
    text-transform: uppercase;
  }
 
+.countdown-separate {
+  font-size: 50px;
+  color: rgba(255, 255, 255, 1);
+  display: flex;
+  align-items: center;
+  padding-bottom: 2.5rem;
+}

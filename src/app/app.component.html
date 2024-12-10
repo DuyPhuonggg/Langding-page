@@ -3,11 +3,13 @@
     <!--  slider-->
     <div class="m-auto relative">
       <img ngSrc="./assets/background-1.jpg" alt="" height="675" width="1200" class="bd-radius-1 z-1"/>
-      <div class="overlay-1 bd-radius-1 z-3 absolute"></div>
+      <div class="overlay-1 bd-radius-1 z-3 absolute" style="box-shadow: 0 0 8px rgba(0, 0, 0, 1)"></div>
       <div class="absolute z-4 t-0 b-0 l-0 r-0 m-auto" >
-          <ng-container [ngTemplateOutlet]="countDown">
+          <ng-container [ngTemplateOutlet]="countDown"></ng-container>
+      </div>
 
-          </ng-container>
+      <div class="absolute z-4 b-2 l-0 r-0 text-white" >
+        <app-calender></app-calender>
       </div>
     </div>
 
@@ -34,22 +36,24 @@
 
 
 <ng-template #countDown>
-    <div class="w-25 m-auto text-white">
+    <div class="w-25 m-auto pt-2">
       <div class="countdown-container">
-        <h2>We Are Coming Soon</h2>
         <div class="countdown-boxes">
           <div class="countdown-box">
             <div class="count-value">{{ timeDisplay.days }}</div>
             <div class="count-label">Days</div>
           </div>
+          <div class="countdown-separate"> : </div>
           <div class="countdown-box">
             <div class="count-value">{{ timeDisplay.hours }}</div>
             <div class="count-label">Hours</div>
           </div>
+          <div class="countdown-separate"> : </div>
           <div class="countdown-box">
             <div class="count-value">{{ timeDisplay.minutes }}</div>
             <div class="count-label">Minutes</div>
           </div>
+          <div class="countdown-separate"> : </div>
           <div class="countdown-box">
             <div class="count-value">{{ timeDisplay.seconds }}</div>
             <div class="count-label">Seconds</div>
