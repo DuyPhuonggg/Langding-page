@@ -6,30 +6,27 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-body{
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  justify-content: center;
-  min-height: 100vh;
-  background: #9B59B6;
-}
-.wrapper{
+.calender-wrapper {
   width: 450px;
-  background: #fff;
+  background: #851a20;
   border-radius: 10px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  color: rgba(255, 255, 255, 0.8);
 }
-.wrapper header{
+.calender-wrapper header{
   display: flex;
   align-items: center;
   padding: 25px 30px 10px;
   justify-content: space-between;
 }
-header .icons{
+
+.calender-wrapper header .icons {
   display: flex;
 }
-header .icons span{
+
+
+
+.calender-wrapper header .icons span {
   height: 38px;
   width: 38px;
   margin: 0 1px;
@@ -41,11 +38,18 @@ header .icons span{
   user-select: none;
   border-radius: 50%;
 }
+
+#prevCalender svg,
+#nextCalender svg {
+  fill: rgba(255, 255, 255, 0.8);
+}
+
+
 .icons span:last-child{
   margin-right: -10px;
 }
 header .icons span:hover{
-  background: #f2f2f2;
+  background: black;
 }
 header .current-date{
   font-size: 1.45rem;
@@ -64,7 +68,7 @@ header .current-date{
   margin-bottom: 20px;
 }
 .calendar li{
-  color: #333;
+  color: rgba(255, 255, 255, 0.8);
   width: calc(100% / 7);
   font-size: 1.07rem;
 }

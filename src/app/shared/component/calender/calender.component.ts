@@ -3,66 +3,141 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
-  styleUrls: ['./calender.component.css']
+  styleUrls: ['./calender.component.css'],
 })
 export class CalenderComponent {
   @ViewChild('daysTag') daysTagRef: ElementRef | any;
   @ViewChild('currentDate') currentDateRef: ElementRef | any;
   @ViewChild('prevNextIcon') prevNextIconRef: ElementRef | any;
 
-  date : Date;
-  currYear : Date | number | string;
-  currMonth : Date | number | string;
-  months : Array<string> = ["January", "February", "March", "April", "May", "June", "July",
-    "August", "September", "October", "November", "December"];
+  currentDate: Date;
+  date: Date;
+  currentYear: number;
+  currentMonth: number;
+  days: Array<number>;
+
+  months: Array<string> = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+    'August', 'September', 'October', 'November', 'December'];
 
   constructor() {
-      this.date = new Date();
-      this.currYear = this.date.getFullYear();
-      this.currMonth = this.date.getMonth();
+    this.currentDate = new Date();
+    this.date = new Date();
+    this.currentYear = this.currentDate.getFullYear();
+    this.currentMonth = this.currentDate.getMonth();
+    this.days = [];
+    this.renderCalendar();
   }
 
-//    renderCalendar() {
-//     let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(),
-//       lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(),
-//       lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(),
-//       lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
-//     let liTag = "";
-//
-//     for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
-//       liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
-//     }
-//
-//     for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
-//       // adding active class to li if the current day, month, and year matched
-//       let isToday = i === date.getDate() && currMonth === new Date().getMonth()
-//       && currYear === new Date().getFullYear() ? "active" : "";
-//       liTag += `<li class="${isToday}">${i}</li>`;
-//     }
-//
-//     for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
-//       liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
-//     }
-//     currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
-//     daysTag.innerHTML = liTag;
-//   }
-//
-//   renderCalendar();
-//
-//   prevNextIcon.forEach(icon => { // getting prev and next icons
-//   icon.addEventListener("click", () => { // adding click event on both icons
-//   // if clicked icon is previous icon then decrement current month by 1 else increment it by 1
-//   currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
-//
-//   if(currMonth < 0 || currMonth > 11) { // if current month is less than 0 or greater than 11
-//   // creating a new date of current year & month and pass it as date value
-//   date = new Date(currYear, currMonth, new Date().getDate());
-//   currYear = date.getFullYear(); // updating current year with new date year
-//   currMonth = date.getMonth(); // updating current month with new date month
-// } else {
-//   date = new Date(); // pass the current date as date value
-// }
-// renderCalendar(); // calling renderCalendar function
-// });
-// });
+  renderCalendar() {
+    this.days = [];
+
+    const firstDayOfCurrentMonth = new Date(this.currentYear, this.currentMonth, 1).getDay();
+    const lastDayOfCurrentMonth = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
+
+    const firstDayOfNextMonth = new Date(this.currentYear, this.currentMonth + 1, 1);
+    const lastDateOfPreviousMonth = new Date(this.currentYear, this.currentMonth, 0).getDate();
+
+    // fill first week
+    for (let i = 0; i < 7; i ++) {
+        if (firstDayOfCurrentMonth === i)  {
+           for (let j = i; j > 0; j--) {
+             this.days.push(lastDateOfPreviousMonth - j + 1)
+           }
+
+           const lengthFirstRow = this.days.length;
+           for (let k = 0; k < ( 7 - lengthFirstRow); k++) {
+             this.days.push(1 + k)
+           }
+           console.log(this.days);
+        }
+    }
+
+    // fill 3 times full week
+    const firstDayOfSecondWeek = this.days[this.days.length - 1] + 1;
+    for (let i = 0 ; i < 21; i++) {
+      this.days.push(i + firstDayOfSecondWeek)
+    }
+
+    // fill 5th week
+    let remainDays = lastDayOfCurrentMonth - this.days[this.days.length - 1];
+    const firstDayOfFifthWeek = this.days[this.days.length - 1] + 1
+    if (remainDays > 7) {
+      for (let i = 0 ; i < 7; i++) {
+        this.days.push(i + firstDayOfFifthWeek)
+      }
+
+      remainDays = remainDays - 7;
+    } else {
+
+      for (let i = 0; i < remainDays; i ++) {
+        this.days.push(i + firstDayOfFifthWeek);
+      }
+
+      for (let i = 0 ; i < (7 -remainDays); i ++) {
+        this.days.push(i + 1);
+      }
+
+      remainDays = 0;
+    }
+
+    // fill 6th week
+    const firstDayOfSixthWeek = this.days[this.days.length - 1] + 1;
+    if (remainDays > 0) {
+
+       for ( let i=0; i<remainDays; i ++) {
+          this.days.push(i + firstDayOfSixthWeek);
+       }
+    }
+
+    if (remainDays === 0) {
+      for (let i = 0 ; i < 7 ; i ++) {
+        this.days.push(i + firstDayOfSixthWeek);
+      }
+    }
+
+
+    console.log(this.days)
+    console.log({
+      firstDayOfCurrentMonth,
+      lastDayOfCurrentMonth,
+      firstDayOfNextMonth,
+      lastDateOfPreviousMonth,
+    })
+  }
+
+  // renderCalendar(); // calling renderCalendar function
+  // });
+  // });
+
+  renderRows() {
+
+  }
+
+  handleChangeMonth(mode: string, currentMonth: number) {
+      if (mode === 'previous') {
+          this.currentMonth = currentMonth - 1;
+
+
+          // previous year
+          if (this.currentMonth === -1) {
+            this.currentYear = this.currentYear - 1;
+            this.currentMonth = 11;
+          }
+
+          this.renderCalendar();
+      }
+
+      if (mode === 'next') {
+        this.currentMonth = currentMonth + 1;
+
+
+        // next year
+        if (this.currentMonth > 11) {
+          this.currentYear = this.currentYear + 1;
+          this.currentMonth = 0;
+        }
+
+        this.renderCalendar();
+      }
+  }
 }
