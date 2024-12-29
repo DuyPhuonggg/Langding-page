@@ -1,0 +1,33 @@
+<div class="m-auto relative w-53 bg-primary bd-radius-1 h-full font-xl pt-2">
+  <div class="overlay-1 bd-radius-1 z-3 absolute shadow-1"></div>
+  <div class="text-white-1 flex justify-center z-4 relative">
+    LỜI CHÚC
+  </div>
+
+  <div class="grid grid-1">
+    <div class="list-congratulate ">
+      <div *ngFor="let congratulate of listCongratulate">
+        <app-card>
+          <div>
+            <div class="font-l pb-1">
+              {{ congratulate.auth }},
+            </div>
+            <div class="font-m">
+              {{ congratulate.content }}
+            </div>
+          </div>
+        </app-card>
+
+      </div>
+    </div>
+
+    <div class="form-congratulate">
+      form viet loi chuc
+    </div>
+  </div>
+
+  <div class="absolute  t-0 z-3 w-full h-full">
+
+  </div>
+
+</div>

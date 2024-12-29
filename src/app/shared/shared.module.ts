@@ -1,18 +1,29 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ToastComponent } from './common/toast/toast.component';
 import { CalenderComponent } from '@/app/shared/component/calender/calender.component';
+import { CongratulateComponent } from './component/congratulate/congratulate.component';
+import { CardComponent } from './common/card/card.component';
+import { PageComponent } from './common/page/page.component';
+import { CountDownComponent } from './component/count-down/count-down.component';
 
 
 @NgModule({
   declarations: [
     ToastComponent,
-    CalenderComponent
+    CalenderComponent,
+    CongratulateComponent,
+    CardComponent,
+    PageComponent,
+    CountDownComponent
   ],
   exports: [
     ToastComponent,
-    CalenderComponent
+    CalenderComponent,
+    CongratulateComponent,
+    PageComponent,
+    CountDownComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
 })
 export class SharedModule {}

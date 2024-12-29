@@ -1,4 +1,9 @@
-<div class="calender-wrapper">
+<div class="calender-wrapper"
+  [ngClass]="{
+     'calender-expand': isExpand,
+     'calender-close': !isExpand
+  }"
+>
   <header>
     <p class="current-date">{{months[currentMonth]}} {{currentYear}}</p>
     <div class="icons">
@@ -10,6 +15,9 @@
       <span class="material-symbols-rounded" id="nextCalender" (click)="handleChangeMonth('next', currentMonth)">
          <svg height="20" viewBox="0 0 320 512" width="20" xmlns="http://www.w3.org/2000/svg"><path
           d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg>
+      </span>
+      <span class="material-symbols-rounded" (click)="handleDismiss()">
+        <i class="fa-solid fa-x dismiss-button"></i>
       </span>
     </div>
   </header>
@@ -23,6 +31,14 @@
       <li>Fri</li>
       <li>Sat</li>
     </ul>
-    <ul #daysTag class="days"></ul>
+    <ul #daysTag class="days">
+      <li
+        *ngFor="let day of days"
+        [ngClass]="{
+            'inactive': day.key !== 'cur',
+            'special': specialDays.includes(day.value + '-' + currentMonth + '-' + currentYear) && day.key === 'cur',
+        }"
+      >{{day.value}}</li>
+    </ul>
   </div>
 </div>

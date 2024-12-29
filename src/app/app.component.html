@@ -1,67 +1,37 @@
 <div class="relative">
-  <div class="flex justify-center px-10 py-1">
-    <!--  slider-->
-    <div class="m-auto relative">
-      <img ngSrc="./assets/background-1.jpg" alt="" height="675" width="1200" class="bd-radius-1 z-1"/>
-      <div class="overlay-1 bd-radius-1 z-3 absolute" style="box-shadow: 0 0 8px rgba(0, 0, 0, 1)"></div>
-      <div class="absolute z-4 t-0 b-0 l-0 r-0 m-auto" >
-          <ng-container [ngTemplateOutlet]="countDown"></ng-container>
-      </div>
+  <div class="block">
+    <app-page>
+      <app-count-down></app-count-down>
+    </app-page>
 
-      <div class="absolute z-4 b-2 l-0 r-0 text-white" >
-        <app-calender></app-calender>
-      </div>
-    </div>
+    <app-page>
+        <app-congratulate></app-congratulate>
+    </app-page>
 
-
-    <div id="player" class="hidden">
-      <audio #audioPlayer autoplay>
-        <source src="./assets/mp3/track-2.mp3" type="audio/mp3" />
-      </audio>
-    </div>
+<!--    <div class="hidden" id="player">-->
+<!--            <audio #audioPlayer autoplay>-->
+<!--              <source src="./assets/mp3/track-2.mp3" type="audio/mp3" />-->
+<!--            </audio>-->
+<!--    </div>-->
   </div>
 
   <app-toast
-      [title]="'Happy new year 2025 ️️🎉️🎊️🎉️🎊️🎉️🎊'"
-      [position]="'Top-right'"
-      [tone]="'Info'"
-      [(active)]="activeToast"
-      (onDismiss)="onDismissToast($event)"
+    (onDismiss)="onDismissToast($event)"
+    [(active)]="activeToast"
+    [position]="'Top-right'"
+    [title]="'Happy new year 2025 ️️🎉️🎊️🎉️🎊️🎉️🎊'"
+    [tone]="'Info'"
   >
-    <div >Chúc bạn có một năm mới an khan thịnh vượng, tràn đầy sức khỏe.</div>
-    <br/>
+    <div>Chúc bạn có một năm mới an khan thịnh vượng, tràn đầy sức khỏe.</div>
+    <br />
     <div>Hãy lướt xuống để có nhiều trải nghiệm thú vị hơn nữa nhé 😉</div>
   </app-toast>
+
+  <div class="fixed z-4 b-0 l-0 r-0 text-white">
+    <app-calender></app-calender>
+  </div>
 </div>
 
 
-<ng-template #countDown>
-    <div class="w-25 m-auto pt-2">
-      <div class="countdown-container">
-        <div class="countdown-boxes">
-          <div class="countdown-box">
-            <div class="count-value">{{ timeDisplay.days }}</div>
-            <div class="count-label">Days</div>
-          </div>
-          <div class="countdown-separate"> : </div>
-          <div class="countdown-box">
-            <div class="count-value">{{ timeDisplay.hours }}</div>
-            <div class="count-label">Hours</div>
-          </div>
-          <div class="countdown-separate"> : </div>
-          <div class="countdown-box">
-            <div class="count-value">{{ timeDisplay.minutes }}</div>
-            <div class="count-label">Minutes</div>
-          </div>
-          <div class="countdown-separate"> : </div>
-          <div class="countdown-box">
-            <div class="count-value">{{ timeDisplay.seconds }}</div>
-            <div class="count-label">Seconds</div>
-          </div>
-        </div>
-      </div>
 
-
-    </div>
-</ng-template>
 

@@ -1,0 +1,33 @@
+<div class="flex justify-center px-10 py-1 flex-wrap h-content">
+  <div class="m-auto relative">
+    <img alt="" class="bd-radius-1 z-1 h-full" height="675" ngSrc="./assets/background-1.jpg" width="1200" />
+    <div class="overlay-1 bd-radius-1 z-3 absolute shadow-1"></div>
+    <div class="absolute z-4 t-0 b-0 l-0 r-0 m-auto">
+      <div class="w-25 m-auto pt-2">
+        <div class="countdown-container">
+          <div class="countdown-boxes">
+            <div class="countdown-box">
+              <div class="count-value">{{ timeDisplay.days }}</div>
+              <div class="count-label">Days</div>
+            </div>
+            <div class="countdown-separate"> :</div>
+            <div class="countdown-box">
+              <div class="count-value">{{ timeDisplay.hours }}</div>
+              <div class="count-label">Hours</div>
+            </div>
+            <div class="countdown-separate"> :</div>
+            <div class="countdown-box">
+              <div class="count-value">{{ timeDisplay.minutes }}</div>
+              <div class="count-label">Minutes</div>
+            </div>
+            <div class="countdown-separate"> :</div>
+            <div class="countdown-box">
+              <div class="count-value">{{ timeDisplay.seconds }}</div>
+              <div class="count-label">Seconds</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

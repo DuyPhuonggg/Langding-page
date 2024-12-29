@@ -1,0 +1,44 @@
+.countdown-container {
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  padding: 50px 0;
+}
+
+.countdown-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.countdown-box {
+  background: #851a20;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 20px 15px;
+  text-align: center;
+  width: 100px;
+}
+
+.count-value {
+  font-size: 36px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.count-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+.countdown-separate {
+  font-size: 50px;
+  color: rgba(255, 255, 255, 1);
+  display: flex;
+  align-items: center;
+  padding-bottom: 2.5rem;
+}
+
+

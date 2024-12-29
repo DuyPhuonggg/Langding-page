@@ -14,103 +14,98 @@ export class CalenderComponent {
   date: Date;
   currentYear: number;
   currentMonth: number;
-  days: Array<number>;
+  days: Array<{key: string, value: number}>;
+  isExpand: boolean;
 
   months: Array<string> = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
     'August', 'September', 'October', 'November', 'December'];
+  specialDays = [
+    '28-0-2025',
+    '29-0-2025',
+    '30-0-2025',
+    '31-0-2025',
+    '25-11-2024',
+  ]
 
   constructor() {
     this.currentDate = new Date();
     this.date = new Date();
     this.currentYear = this.currentDate.getFullYear();
     this.currentMonth = this.currentDate.getMonth();
-    this.days = [];
-    this.renderCalendar();
+    this.days = this.getDaysOfCurrentMonth();
+    this.isExpand = false;
   }
 
-  renderCalendar() {
-    this.days = [];
-
+  getDaysOfCurrentMonth() {
+    const days = [];
     const firstDayOfCurrentMonth = new Date(this.currentYear, this.currentMonth, 1).getDay();
     const lastDayOfCurrentMonth = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
-
-    const firstDayOfNextMonth = new Date(this.currentYear, this.currentMonth + 1, 1);
     const lastDateOfPreviousMonth = new Date(this.currentYear, this.currentMonth, 0).getDate();
 
     // fill first week
     for (let i = 0; i < 7; i ++) {
-        if (firstDayOfCurrentMonth === i)  {
-           for (let j = i; j > 0; j--) {
-             this.days.push(lastDateOfPreviousMonth - j + 1)
-           }
-
-           const lengthFirstRow = this.days.length;
-           for (let k = 0; k < ( 7 - lengthFirstRow); k++) {
-             this.days.push(1 + k)
-           }
-           console.log(this.days);
+      if (firstDayOfCurrentMonth === i)  {
+        for (let j = i; j > 0; j--) {
+          days.push({key: 'pre', value: lastDateOfPreviousMonth - j + 1})
         }
+
+        const lengthFirstRow = days.length;
+        for (let k = 0; k < ( 7 - lengthFirstRow); k++) {
+          days.push({key: 'cur', value: k + 1})
+        }
+      }
     }
 
     // fill 3 times full week
-    const firstDayOfSecondWeek = this.days[this.days.length - 1] + 1;
+    const firstDayOfSecondWeek = days[days.length - 1].value + 1;
     for (let i = 0 ; i < 21; i++) {
-      this.days.push(i + firstDayOfSecondWeek)
+      days.push({key: 'cur', value: i + firstDayOfSecondWeek})
     }
 
     // fill 5th week
-    let remainDays = lastDayOfCurrentMonth - this.days[this.days.length - 1];
-    const firstDayOfFifthWeek = this.days[this.days.length - 1] + 1
+    let remainDays = lastDayOfCurrentMonth - days[days.length - 1].value;
+    const firstDayOfFifthWeek = days[days.length - 1].value + 1
     if (remainDays > 7) {
       for (let i = 0 ; i < 7; i++) {
-        this.days.push(i + firstDayOfFifthWeek)
+        days.push( {key: 'cur', value: i + firstDayOfFifthWeek})
       }
 
       remainDays = remainDays - 7;
     } else {
-
       for (let i = 0; i < remainDays; i ++) {
-        this.days.push(i + firstDayOfFifthWeek);
+        days.push({key: 'cur', value: i + firstDayOfFifthWeek});
       }
 
-      for (let i = 0 ; i < (7 -remainDays); i ++) {
-        this.days.push(i + 1);
+      for (let i = 0 ; i < (7 - remainDays); i ++) {
+        days.push( {key: 'next', value: i + 1});
       }
 
       remainDays = 0;
     }
 
     // fill 6th week
-    const firstDayOfSixthWeek = this.days[this.days.length - 1] + 1;
+    console.log(remainDays)
+    let firstDayOfSixthWeek = days[days.length - 1].value + 1;
     if (remainDays > 0) {
 
-       for ( let i=0; i<remainDays; i ++) {
-          this.days.push(i + firstDayOfSixthWeek);
-       }
-    }
+      for ( let i= 0; i< remainDays; i ++) {
+        days.push( {key: 'cur', value: i + firstDayOfSixthWeek});
+      }
 
-    if (remainDays === 0) {
-      for (let i = 0 ; i < 7 ; i ++) {
-        this.days.push(i + firstDayOfSixthWeek);
+      for (let i= 0; i < (7 - remainDays); i ++) {
+        days.push( {key: 'next', value: i + 1});
       }
     }
 
+    if (remainDays === 0) {
+      if (firstDayOfSixthWeek > 31) firstDayOfSixthWeek = 1
+      for (let i = 0 ; i < 7 ; i ++) {
+        days.push( {key: 'next', value: i + firstDayOfSixthWeek});
+      }
+    }
 
-    console.log(this.days)
-    console.log({
-      firstDayOfCurrentMonth,
-      lastDayOfCurrentMonth,
-      firstDayOfNextMonth,
-      lastDateOfPreviousMonth,
-    })
-  }
-
-  // renderCalendar(); // calling renderCalendar function
-  // });
-  // });
-
-  renderRows() {
-
+    if (!days.length) return [];
+    return days;
   }
 
   handleChangeMonth(mode: string, currentMonth: number) {
@@ -124,7 +119,7 @@ export class CalenderComponent {
             this.currentMonth = 11;
           }
 
-          this.renderCalendar();
+         this.days = this.getDaysOfCurrentMonth();
       }
 
       if (mode === 'next') {
@@ -137,7 +132,11 @@ export class CalenderComponent {
           this.currentMonth = 0;
         }
 
-        this.renderCalendar();
+        this.days = this.getDaysOfCurrentMonth();
       }
+  }
+
+  handleDismiss() {
+
   }
 }
