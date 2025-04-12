@@ -42,5 +42,6 @@ testem.log
 Thumbs.db
 
 package-lock.json
-
+*.yaml
+.firebaserc
 /src/assets/database
