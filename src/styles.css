@@ -71,7 +71,9 @@ body {
 .w-content {
   width: min-content;
 }
-
+.w-fit {
+  width: fit-content;
+}
 .w-16 {
   width: 25.6rem;
 }
@@ -220,7 +222,7 @@ color: rgba(255, 255, 255, 0.8);
 }
 
 .grid-1 {
-  grid-template-columns: auto 400px 0;
+  grid-template-columns: auto 480px 0;
 }
 
 .h-content {
@@ -260,3 +262,4 @@ color: rgba(255, 255, 255, 0.8);
 app-page {
   display: contents;
 }
+

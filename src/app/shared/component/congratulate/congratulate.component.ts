@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '@/app/services/user.service';
 
 @Component({
   selector: 'app-congratulate',
@@ -6,21 +8,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./congratulate.component.css']
 })
 export class CongratulateComponent {
-  listCongratulate = [{
-    id: 1,
-    auth: 'Kiều Duy Phương',
-    content: 'Chúc mày năm mới vui như Tết, tiền đầy túi, tình đầy tim, thành công rực rỡ và mọi điều tốt lành!'
-  },{
-    id: 2,
-    auth: 'Kiều Duy Phương',
-    content: 'Chúc bạn một năm mới rực rỡ, luôn khỏe mạnh, hạnh phúc và đạt được tất cả những gì bạn mong muốn!'
-  },{
-    id: 3,
-    auth: 'Kiều Duy Phương',
-    content: 'Xuân sang chúc bạn vàng thỏi đầy nhà, tiền rải khắp sân, tình yêu mặn nồng và mọi điều viên mãn!'
-  },{
-    id: 4,
-    auth: 'Kiều Duy Phương',
-    content: 'Chúc bạn năm mới nhiều sức khỏe, sự nghiệp thăng tiến, gặt hái nhiều thành công và luôn hạnh phúc!'
-  }];
+  listCongratulate: any = [];
+  congratulateForm = new FormGroup({
+    nickName: new FormControl('', Validators.required),
+    content: new FormControl('', Validators.required),
+  });
+
+  constructor(userService: UserService) {
+    this.listCongratulate = userService.getAllCongratulate();
+  }
+
+  onSubmitForm() {
+    const { nickName, content } = this.congratulateForm.value;
+    if (!nickName || !content) {
+        return;
+    }
+
+    // const exitUser = await
+  }
 }

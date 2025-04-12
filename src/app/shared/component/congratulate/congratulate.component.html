@@ -5,7 +5,7 @@
   </div>
 
   <div class="grid grid-1">
-    <div class="list-congratulate ">
+    <div class="list-congratulate">
       <div *ngFor="let congratulate of listCongratulate">
         <app-card>
           <div>
@@ -21,13 +21,32 @@
       </div>
     </div>
 
-    <div class="form-congratulate">
-      form viet loi chuc
-    </div>
+    <div>
+      <app-card>
+        <div class="">🥰 Viết lời chúc ở đây nhé bạn yêu! 🥰</div>
+
+        <form [formGroup]="congratulateForm" (ngSubmit)="onSubmitForm()" class="form-congratulate">
+          <div class="form-row">
+            <label for="nick-name">Biệt danh </label>
+            <input id="nick-name" type="text" formControlName="nickName" class="nick-name">
+          </div>
+
+          <div class="form-row">
+            <label for="content">Lời chúc</label>
+            <textarea id="content" formControlName="content" rows="10" cols="40" class="congratulate-content"></textarea>
+          </div>
+
+          <div class="form-row">
+            <button type="submit" class="form-btn" [disabled]="!congratulateForm.valid">Gửi lời chúc</button>
+          </div>
+        </form>
+      </app-card>
+
   </div>
 
   <div class="absolute  t-0 z-3 w-full h-full">
 
   </div>
 
+</div>
 </div>

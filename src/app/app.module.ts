@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { NgOptimizedImage } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 import { TimeHelper } from '@/app/helpers/timer.helper';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { TimeHelper } from '@/app/helpers/timer.helper';
   imports: [
     BrowserModule,
     NgOptimizedImage,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
   ],
   providers: [TimeHelper],
   bootstrap: [AppComponent]

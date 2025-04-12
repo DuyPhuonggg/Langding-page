@@ -6,7 +6,7 @@ import { CongratulateComponent } from './component/congratulate/congratulate.com
 import { CardComponent } from './common/card/card.component';
 import { PageComponent } from './common/page/page.component';
 import { CountDownComponent } from './component/count-down/count-down.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,6 @@ import { CountDownComponent } from './component/count-down/count-down.component'
     PageComponent,
     CountDownComponent,
   ],
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [CommonModule, NgOptimizedImage, ReactiveFormsModule],
 })
 export class SharedModule {}

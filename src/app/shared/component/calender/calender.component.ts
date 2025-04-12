@@ -84,7 +84,6 @@ export class CalenderComponent {
     }
 
     // fill 6th week
-    console.log(remainDays)
     let firstDayOfSixthWeek = days[days.length - 1].value + 1;
     if (remainDays > 0) {
 
